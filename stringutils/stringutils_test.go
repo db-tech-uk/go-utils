@@ -39,6 +39,7 @@ func TestToSnakeCase(t *testing.T) {
 	}
 }
 
+//nolint:goconst
 func TestSpacePad(t *testing.T) {
 	tests := []struct {
 		strToPad    string

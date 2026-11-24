@@ -52,7 +52,7 @@ func sendWithContext(url, verb string, payload io.Reader, timeout *time.Duration
 }
 
 func DownloadFileToPath(url, filePath string) error {
-	var funcName string = "DownloadFileToPath"
+	funcName := "DownloadFileToPath"
 
 	// Create the file
 	out, err := os.Create(filePath)

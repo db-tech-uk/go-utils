@@ -6,6 +6,7 @@ import (
 	"time"
 )
 
+//nolint:goconst
 func TestRound(t *testing.T) {
 	tests := map[string]struct {
 		Duration    time.Duration

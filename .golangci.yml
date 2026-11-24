@@ -1,3 +1,4 @@
+version: "2"
 linters:
   enable:
     - asasalint
@@ -11,31 +12,22 @@ linters:
     - dogsled
     - dupword
     - durationcheck
-    - errcheck
+    - err113
     - errchkjson
     - errname
     - errorlint
-    - execinquery
     - exhaustive
-    - exportloopref
     - forbidigo
     - forcetypeassert
-    - gci
     - gocheckcompilerdirectives
     - goconst
     - gocritic
     - godot
-    - goerr113
-    - gofmt
-    - goimports
-    - gomodguard
+    - gomodguard_v2
     - goprintffuncname
     - gosec
-    - gosimple
-    - govet
     - grouper
     - importas
-    - ineffassign
     - interfacebloat
     - ireturn
     - loggercheck
@@ -51,15 +43,11 @@ linters:
     - reassign
     - rowserrcheck
     - sqlclosecheck
-    - staticcheck
     - tagliatelle
-    - tenv
     - testableexamples
     - thelper
-    - typecheck
     - unconvert
     - unparam
-    - unused
     - usestdlibvars
     - wastedassign
     - whitespace
@@ -74,36 +62,64 @@ linters:
     - gocognit
     - gocyclo
     - godox
-    - gofumpt
     - goheader
-    - gomnd
     - gomoddirectives
     - lll
     - maintidx
     - makezero
+    - mnd
     - nestif
     - nlreturn
     - nonamedreturns
     - paralleltest
     - revive
-    - stylecheck
     - testpackage
     - tparallel
     - varnamelen
     - wrapcheck
     - wsl
-
-linters-settings:
-  gci:
-    sections:
-      - standard
-      - default
-      - prefix(go-utils,github.com/db-tech-uk/go-utils)
-  goimports:
-    local-prefixes: go-utils,github.com/db-tech-uk/go-utils
-
-issues:
-  exclude-rules:
-    - linters:
-        - goerr113
-      text: "do not define dynamic errors, use wrapped static errors instead"
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+      - std-error-handling
+    rules:
+      - linters:
+          - err113
+        text: do not define dynamic errors, use wrapped static errors instead
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
+  settings:
+    depguard:
+      rules:
+        Main:
+          files:
+            - $all
+          allow:
+            - $gostd
+            - github.com/db-tech-uk
+formatters:
+  enable:
+    - gci
+    - gofmt
+    - goimports
+  settings:
+    gci:
+      sections:
+        - standard
+        - default
+        - prefix(go-utils,github.com/db-tech-uk/go-utils)
+    goimports:
+      local-prefixes:
+        - go-utils
+        - github.com/db-tech-uk/go-utils
+  exclusions:
+    generated: lax
+    paths:
+      - third_party$
+      - builtin$
+      - examples$

@@ -3,7 +3,6 @@ package fileutils
 
 import (
 	"fmt"
-	"io/ioutil"
 	"log"
 	"os"
 	"reflect"
@@ -518,7 +517,7 @@ func TestWriteLine(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	content, err := ioutil.ReadFile(targetFile)
+	content, err := os.ReadFile(targetFile)
 	if err != nil {
 		t.Fatal(err)
 	}

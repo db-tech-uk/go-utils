@@ -8,7 +8,6 @@ import (
 	"fmt"
 	"io"
 	"io/fs"
-	"io/ioutil"
 	"os"
 	"path"
 	"path/filepath"
@@ -21,7 +20,7 @@ const (
 )
 
 func Find(folderPath, ext string) ([]string, error) {
-	var funcName string = "Find"
+	funcName := "Find"
 
 	var files []string
 
@@ -59,7 +58,7 @@ func Find(folderPath, ext string) ([]string, error) {
 }
 
 func Folders(folderPath string) ([]string, error) {
-	var funcName string = "Folders"
+	funcName := "Folders"
 
 	if !FolderExists(folderPath) {
 		return []string{}, fmt.Errorf("%v.%v: target does not exist [%v]", packageName, funcName, folderPath)
@@ -90,13 +89,13 @@ func Folders(folderPath string) ([]string, error) {
 }
 
 func EmptyFolder(folderPath string) error {
-	var funcName string = "EmptyFolder"
+	funcName := "EmptyFolder"
 
 	if !FolderExists(folderPath) {
 		return fmt.Errorf("%v.%v: target does not exist [%v]", packageName, funcName, folderPath)
 	}
 
-	dir, err := ioutil.ReadDir(folderPath)
+	dir, err := os.ReadDir(folderPath)
 	if err != nil {
 		return fmt.Errorf("%v.%v: error reading target [%v], [%v]", packageName, funcName, folderPath, err.Error())
 	}
@@ -109,7 +108,7 @@ func EmptyFolder(folderPath string) error {
 }
 
 func FolderIsWriteable(folderPath string) (bool, error) {
-	var funcName string = "FolderIsWritable"
+	funcName := "FolderIsWritable"
 
 	if !FolderExists(folderPath) {
 		return false, fmt.Errorf("%v.%v: target does not exist [%v]", packageName, funcName, folderPath)
@@ -150,7 +149,7 @@ func FileExists(fileName string) bool {
 }
 
 func IsSymlink(fileName string) (bool, error) {
-	var funcName string = "IsSymlink"
+	funcName := "IsSymlink"
 
 	fi, err := os.Lstat(fileName)
 	if err != nil {
@@ -161,7 +160,7 @@ func IsSymlink(fileName string) (bool, error) {
 }
 
 func MkDir(dir string) error {
-	var funcName string = "MkDir"
+	funcName := "MkDir"
 
 	var sym bool
 	var err error
@@ -181,7 +180,7 @@ func MkDir(dir string) error {
 }
 
 func MkFile(fileName string) error {
-	var funcName string = "MkFile"
+	funcName := "MkFile"
 
 	if FileExists(fileName) {
 		return fmt.Errorf("%v.%v: file already exists [%v]", packageName, funcName, fileName)
@@ -205,7 +204,7 @@ func FileIsWriteable(fileName string) bool {
 }
 
 func GetFile(fileName string) (*os.File, error) {
-	var funcName string = "GetFile"
+	funcName := "GetFile"
 
 	f, err := os.OpenFile(fileName, os.O_CREATE|os.O_APPEND|os.O_RDWR, 0655)
 	if err != nil {
@@ -216,7 +215,7 @@ func GetFile(fileName string) (*os.File, error) {
 }
 
 func WriteFile(fileName string, fileContent string) error {
-	var funcName string = "WriteFile"
+	funcName := "WriteFile"
 
 	f, err := GetFile(fileName)
 	if err != nil {
@@ -233,7 +232,7 @@ func WriteFile(fileName string, fileContent string) error {
 }
 
 func WriteLine(f *os.File, line string) error {
-	var funcName string = "WriteLine"
+	funcName := "WriteLine"
 
 	if _, err := f.Write([]byte(line)); err != nil {
 		return fmt.Errorf("%v.%v: error writing line [%v], [%v]", packageName, funcName, f.Name(), err.Error())
@@ -243,7 +242,7 @@ func WriteLine(f *os.File, line string) error {
 }
 
 func GetMD5Hash(filePath string) (string, error) {
-	var funcName string = "GetMD5Hash"
+	funcName := "GetMD5Hash"
 
 	file, err := os.Open(filePath)
 	if err != nil {
@@ -261,7 +260,7 @@ func GetMD5Hash(filePath string) (string, error) {
 }
 
 func FileSizeBytes(filePath string) (int64, error) {
-	var funcName string = "FileSizeBytes"
+	funcName := "FileSizeBytes"
 
 	file, err := os.Open(filePath)
 	if err != nil {
@@ -282,7 +281,7 @@ func FileSize(fileName, units string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	var bytes float64 = float64(fileBytes)
+	bytes := float64(fileBytes)
 
 	switch units {
 	case "kb":
@@ -299,7 +298,7 @@ func FileSize(fileName, units string) (string, error) {
 }
 
 func FileHash(fileName string) (string, error) {
-	var funcName string = "FileHash"
+	funcName := "FileHash"
 
 	f, err := os.Open(fileName)
 	if err != nil {

@@ -39,7 +39,7 @@ func FormatTime(d time.Time) string {
 }
 
 func Took(start time.Time) time.Duration {
-	var duration time.Duration = time.Since(start)
+	duration := time.Since(start)
 
 	return Round(duration, 2)
 }

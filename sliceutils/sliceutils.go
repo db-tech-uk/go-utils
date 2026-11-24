@@ -65,7 +65,7 @@ func MinInt(s []int) int {
 		return 0
 	}
 
-	var r int = s[0]
+	r := s[0]
 
 	for _, a := range s {
 		if a < r {
@@ -81,7 +81,7 @@ func MaxInt(s []int) int {
 		return 0
 	}
 
-	var r int = s[0]
+	r := s[0]
 
 	for _, a := range s {
 		if a > r {

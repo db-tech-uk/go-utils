@@ -1,3 +1,3 @@
 module github.com/db-tech-uk/go-utils
 
-go 1.18
+go 1.26.0

@@ -3,19 +3,19 @@ package fileutils
 func ByteSizeConvert(fileBytes int64, units string) float64 {
 	var oneMb float64 = 1024
 
-	var bytes float64 = float64(fileBytes)
+	bytes := float64(fileBytes)
 
-	var kilobytes float64 = bytes / oneMb
+	kilobytes := bytes / oneMb
 
-	var megabytes float64 = kilobytes / oneMb
+	megabytes := kilobytes / oneMb
 
-	var gigabytes float64 = megabytes / oneMb
+	gigabytes := megabytes / oneMb
 
-	var terabytes float64 = gigabytes / oneMb
+	terabytes := gigabytes / oneMb
 
-	var petabytes float64 = terabytes / oneMb
+	petabytes := terabytes / oneMb
 
-	var exabytes float64 = petabytes / oneMb
+	exabytes := petabytes / oneMb
 
 	switch units {
 	case "kb":
