@@ -1,3 +1,3 @@
-module github.com/rockwell-uk/go-utils
+module github.com/db-tech-uk/go-utils
 
 go 1.18
